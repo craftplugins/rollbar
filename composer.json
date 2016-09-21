@@ -1,0 +1,14 @@
+{
+	"name": "craft-rollbar/rollbar",
+	"description": "Craft integration with error monitoring service Rollbar.",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Joshua Baker",
+			"homepage": "https://joshuabaker.com/"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
