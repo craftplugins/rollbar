@@ -33,13 +33,17 @@ You can use this plugin in your own plugins simply by using Craft’s internal l
 
 ```php
 // Reporting exceptions
+
 try {
     throw new \Exception('Something went wrong!');
 } catch (\Exception $e) {
     craft()->rollbar->reportException($e);
 }
+```
 
+```php
 // Logging
+
 craft()->rollbar->reportMessage('Something happened.', \Craft\LogLevel::Info, [
     'foo' => 'bar',
 ]);

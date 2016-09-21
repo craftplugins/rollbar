@@ -71,16 +71,39 @@ class RollbarService extends BaseApplicationComponent
      */
     public function log($log)
     {
+        $level = $log[1];
+        $category = $log[2];
+
+        $includeCraftLogs = craft()->config->get('includeCraftLogs', 'rollbar');
+        $includePluginLogs = craft()->config->get('includePluginLogs', 'rollbar');
         $includeLogLevels = craft()->config->get('includeLogLevels', 'rollbar');
 
-        if (in_array($log[1], $includeLogLevels)) {
-            $data = [
-                'category' => $log[2],
-                'timestamp' => $log[3],
-                'plugin' => $log[5],
-            ];
-
-            return $this->reportMessage($log[0], $log[1], $data);
+        if ($category == 'application' && !$includeCraftLogs) {
+            // Don’t log Craft
+            return;
         }
+
+        if ($category == 'plugin' && !$includePluginLogs) {
+            // Don’t log plugins
+            return;
+        }
+
+        if (is_array($includePluginLogs) && !in_array($log[5], $includePluginLogs)) {
+            // Don’t log this plugin
+            return;
+        }
+
+        if (!in_array($level, $includeLogLevels)) {
+            // Don’t log this level
+            return;
+        }
+
+        $data = [
+            'category' => $category,
+            'timestamp' => $log[3],
+            'plugin' => $log[5],
+        ];
+
+        return $this->reportMessage($log[0], $level, $data);
     }
 }
