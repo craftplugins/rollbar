@@ -9,6 +9,9 @@
 		}
 	],
 	"require": {
-		"composer/installers": "~1.0"
+		"rollbar/rollbar": "^0.18.2"
+	},
+	"config": {
+		"vendor-dir": "rollbar/vendor"
 	}
 }
