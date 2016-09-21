@@ -1,16 +1,16 @@
 <?php
+
 /**
- * Rollbar plugin for Craft CMS
+ * Rollbar plugin for Craft CMS.
  *
  * Craft integration with error monitoring service Rollbar.
  *
  * @author    Joshua Baker
  * @copyright Copyright (c) 2016 Joshua Baker
+ *
  * @link      https://joshuabaker.com/
- * @package   Rollbar
  * @since     0.1.0
  */
-
 namespace Craft;
 
 class RollbarPlugin extends BasePlugin
@@ -27,7 +27,7 @@ class RollbarPlugin extends BasePlugin
      */
     public function getName()
     {
-         return Craft::t('Rollbar');
+        return Craft::t('Rollbar');
     }
 
     /**
