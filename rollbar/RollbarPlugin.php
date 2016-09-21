@@ -13,6 +13,8 @@
  */
 namespace Craft;
 
+use Rollbar;
+
 class RollbarPlugin extends BasePlugin
 {
     /**
@@ -20,6 +22,27 @@ class RollbarPlugin extends BasePlugin
      */
     public function init()
     {
+        require_once __DIR__.'/vendor/autoload.php';
+
+        Rollbar::init([
+            'access_token' => craft()->config->get('accessToken', 'rollbar'),
+            'environment' => CRAFT_ENVIRONMENT,
+        ], false, false);
+
+        craft()->onException->add(function ($event) {
+            craft()->rollbar->reportException($event->exception);
+        });
+
+        craft()->onError->add(function ($event) {
+            craft()->rollbar->reportMessage($event->message);
+        });
+
+        $logger = Craft::getLogger();
+        $logger->attachEventHandler('onFlush', function($event) use ($logger) {
+            foreach ($logger->getLogs($level) as $log) {
+                craft()->rollbar->log($log);
+            }
+        });
     }
 
     /**
@@ -65,14 +88,6 @@ class RollbarPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getSchemaVersion()
-    {
-        return '0.1.0';
-    }
-
-    /**
-     * @return string
-     */
     public function getDeveloper()
     {
         return 'Joshua Baker';
@@ -84,37 +99,5 @@ class RollbarPlugin extends BasePlugin
     public function getDeveloperUrl()
     {
         return 'https://joshuabaker.com/';
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasCpSection()
-    {
-        return false;
-    }
-
-    /**
-     */
-    public function onBeforeInstall()
-    {
-    }
-
-    /**
-     */
-    public function onAfterInstall()
-    {
-    }
-
-    /**
-     */
-    public function onBeforeUninstall()
-    {
-    }
-
-    /**
-     */
-    public function onAfterUninstall()
-    {
     }
 }
