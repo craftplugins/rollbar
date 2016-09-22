@@ -20,7 +20,7 @@ use Exception;
 class RollbarService extends BaseApplicationComponent
 {
     /**
-     * A key/value map of LogLevel and Rollbar Level constants.
+     * A key/value map of {@link Craft\LogLevel} and Rollbar {@link Level} constants.
      */
     protected $levels = [
         LogLevel::Error => Level::ERROR,
@@ -31,7 +31,7 @@ class RollbarService extends BaseApplicationComponent
     ];
 
     /**
-     * Converts Craft’s LogLevel into Rollbar Level.
+     * Converts {@link Craft\LogLevel} into Rollbar {@link Level}.
      *
      * @param string $level
      *
