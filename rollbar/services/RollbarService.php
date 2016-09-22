@@ -51,7 +51,15 @@ class RollbarService extends BaseApplicationComponent
      */
     public function reportException(Exception $exception, $data = null, $payload = null)
     {
-        return Rollbar::report_exception($exception, $data, $payload);
+        // Enabled reporting to ensure that the exception is logged
+        $reportingLevel = error_reporting(E_ALL);
+
+        $return = Rollbar::report_exception($exception, $data, $payload);
+
+        // Revert to the original reporting level
+        error_reporting($reportingLevel);
+
+        return $return;
     }
 
     /**
