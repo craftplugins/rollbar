@@ -39,7 +39,7 @@ class RollbarPlugin extends BasePlugin
 
         $logger = Craft::getLogger();
         $logger->attachEventHandler('onFlush', function($event) use ($logger) {
-            foreach ($logger->getLogs($level) as $log) {
+            foreach ($logger->getLogs() as $log) {
                 craft()->rollbar->log($log);
             }
         });
