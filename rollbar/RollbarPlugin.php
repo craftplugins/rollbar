@@ -66,7 +66,7 @@ class RollbarPlugin extends BasePlugin
      */
     public function getDocumentationUrl()
     {
-        return 'https://github.com/craft-rollbar/rollbar/blob/master/README.md';
+        return 'https://github.com/joshuabaker/craft-rollbar/blob/master/README.md';
     }
 
     /**
@@ -74,7 +74,7 @@ class RollbarPlugin extends BasePlugin
      */
     public function getReleaseFeedUrl()
     {
-        return 'https://raw.githubusercontent.com/craft-rollbar/rollbar/master/releases.json';
+        return 'https://raw.githubusercontent.com/joshuabaker/craft-rollbar/master/releases.json';
     }
 
     /**
