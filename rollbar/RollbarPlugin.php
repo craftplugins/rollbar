@@ -30,6 +30,12 @@ class RollbarPlugin extends BasePlugin
         ], false, false);
 
         craft()->onException->add(function ($event) {
+            $includeHttpStatusCodes = craft()->config->get('includeHttpStatusCodes', 'rollbar');
+
+            if ($event->exception instanceof HttpException && ($includeHttpStatusCodes === false || !in_array($event->exception->statusCode, $includeHttpStatusCodes))) {
+                return;
+            }
+
             craft()->rollbar->reportException($event->exception);
         });
 

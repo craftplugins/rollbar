@@ -42,4 +42,15 @@ return [
         LogLevel::Warning,
     ],
 
+    /**
+     * Status codes to include when logging {@link \Craft\HttpException}.
+     *
+     * @param bool|array
+     */
+    'includeHttpStatusCodes' => [
+        416,
+        500,
+        503,
+    ],
+
 ];
