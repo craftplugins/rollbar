@@ -1,4 +1,4 @@
-<img src="https://rawgit.com/joshuabaker/craft-rollbar/master/rollbar/resources/icon.svg" width="72">
+<img src="./rollbar/resources/icon.svg" width="72">
 
 # Rollbar plugin for Craft CMS
 
