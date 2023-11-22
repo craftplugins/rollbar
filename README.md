@@ -1,6 +1,8 @@
-<img src="./rollbar/resources/icon.svg" width="72">
+> [!IMPORTANT]
+>
+> **This plugin is no longer maintained.**
 
-# Rollbar plugin for Craft CMS
+# Rollbar for Craft CMS
 
 Craft integration with error monitoring service Rollbar.
 
